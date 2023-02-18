@@ -57,65 +57,6 @@ def mobbing():
         keyboard.release("h")
         time.sleep(0.2)
 
-        #reach bottom right
-        keyboard.press("x")
-        time.sleep(0.2)
-        keyboard.release("x")
-        time.sleep(0.2)
-        keyboard.press("x")
-        time.sleep(0.1)
-        keyboard.release("x")
-        time.sleep(0.2)
-    
-        keyboard.press("t")
-        time.sleep(0.1)
-        keyboard.release("t")
-        time.sleep(0.2)
-        keyboard.press("y")
-        time.sleep(0.1)
-        keyboard.release("y")
-        time.sleep(0.2)
-        keyboard.press("x")
-        time.sleep(0.1)
-        keyboard.release("x")
-        time.sleep(0.2)
-
-        keyboard.press("j")
-        time.sleep(0.1)
-        keyboard.release("j")
-        time.sleep(0.1)
-
-        keyboard.press("f")
-        time.sleep(0.1)
-        keyboard.release("f")
-        time.sleep(0.1)
-
-        keyboard.press("k")
-        time.sleep(0.1)
-        keyboard.release("k")
-        time.sleep(0.1)
-
-
-        keyboard.press("l")
-        time.sleep(0.1)
-        keyboard.release("l")
-        time.sleep(0.1)
-
-
-        keyboard.press("home")
-        time.sleep(0.1)
-        keyboard.release("home")
-        time.sleep(0.1)
-
-        keyboard.press("end")
-        time.sleep(0.1)
-        keyboard.release("end")
-        time.sleep(0.1)
-
-
-    
-
-
 if __name__ == '__main__':
     active_window() # Activates maplestory window
     maple_window_box = get_window_coordinates()

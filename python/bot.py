@@ -10,7 +10,7 @@ def active_window():
     '''
     Make maplestory the active window
     '''
-    print("Finding MapleLegends Window...")
+    print("Finding MapleStory Window...")
 
     try:
         maple_window = pyautogui.getWindowsWithTitle("MapleStory")[0]

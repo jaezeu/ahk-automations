@@ -22,11 +22,16 @@ Loop {
     for key, value in stranger {
         ImageSearch, StrangerX, StrangerY, 6, 32, 385, 176, Resources\%value%
     if (ErrorLevel = 0)
-        TrayTip, %key% has entered your map at location %StrangerX%x%StrangerY% , 1
+        TrayTip, %key% has entered your map at location %StrangerX%x%StrangerY% , 2
     else
-        TrayTip, Either Icon could not be found or could not conduct search. Error level is %ErrorLevel% 
-    Sleep, 1000
+        TrayTip, Either Icon could not be found or could not conduct search. Error level is %ErrorLevel% , 2
+    Random, randsleep, 100,1000
+    Sleep, %randsleep%
     }
+
+    ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
+    if (ErrorLevel = 0)
+        MsgBox, Your location %MeX%x%MeY%
 } Until Trigger ;check if triggger is true
 
 Disable:

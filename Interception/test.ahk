@@ -2,6 +2,19 @@
 #Persistent
 #include Lib\AutoHotInterception.ahk
 
+;OPTIMIZATIONS START
+#NoEnv
+#MaxHotkeysPerInterval 99000000
+#HotkeyInterval 99000000
+#KeyHistory 0
+ListLines Off
+Process, Priority, , A
+SetBatchLines, -1
+SetKeyDelay, -1, -1
+SetWinDelay, -1
+SetControlDelay, -1
+;OPTIMIZATIONS END
+
 CoordMode ,Pixel, Window
 Gui +AlwaysOnTop
 Gui Show,w250 h70

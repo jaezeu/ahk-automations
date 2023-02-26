@@ -44,13 +44,8 @@ F2::
 Enable:
 Trigger:=0
 
-SetTimer, checkIntruder , 5000 ;Check map for people every 4 seconds
-; settimer,checkKishin,2000 ;check every 2 seconds
-; settimer,checkYuki,2000 ;check every 2 seconds
-; settimer,checkYaksha,2000 ;check every 2 seconds
-; settimer,checkBigBoss,2000 ;check every 2 seconds
-; settimer,checkPrincessVow,2000 ;check every 2 seconds
-; settimer,checkNineTail,2000 ;check every 2 seconds
+SetTimer, checkIntruder , 5000
+; SetTimer,checkBuffs,5000
 Loop {
     ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
     if (ErrorLevel = 0){
@@ -58,16 +53,16 @@ Loop {
         if (MeX > 50 && MeX <= 250){
             AHI.SendKeyEvent(keyboardId, 331, 0)
             AHI.SendKeyEvent(keyboardId, 32, 0)
-            ; pressedKey(57,100)
+            pressedKey(57,100)
             AHI.SendKeyEvent(keyboardId, 333, 1)
             AHI.SendKeyEvent(keyboardId, 32, 1)
-            ; pressedKey(45,100)
-            ; pressedKey(45,100)
-            ; pressedKey(45,100)
-            ; pressedKey(57,100)
-            ; pressedKey(45,100)
-            ; pressedKey(45,100)
-            ; pressedKey(45,100)
+            pressedKey(45,100)
+            pressedKey(45,100)
+            pressedKey(45,100)
+            pressedKey(57,100)
+            pressedKey(45,100)
+            pressedKey(45,100)
+            pressedKey(45,100)
         }
         if (MeX > 200){
             AHI.SendKeyEvent(keyboardId, 333, 0)
@@ -92,59 +87,42 @@ Return
 
 ; Below this is for checking summons/buffs
 
-; checkKishin:
+; checkBuffs:
 ; if (a_tickcount > kishinInitialCooldown) {
 ;     send {f down}
 ;     sleep 50
 ;     send {f up}
 ;     kishinInitialCooldown := a_tickcount + 60000 ;set cooldown
+;     sleep 500
 ; }
-; return
-
-; checkYuki:
 ; if (a_tickcount > yukiInitialCooldown) {
-;     send {u down}
-;     sleep 50
-;     send {u up}
-;     yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
-; }
-; return
-
-; checkYaksha:
-; if (a_tickcount > yakshaInitialCooldown) {
-;     send {t down}
-;     sleep 50
-;     send {t up}
-;     yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
-; }
-; return
-
-; checkBigBoss:
-; if (a_tickcount > bbInitialCooldown) {
-;     send {y down}
-;     sleep 50
-;     send {y up}
-;     bbInitialCooldown := a_tickcount + 180000 ;set cooldown
-; }
-; return
-
-; checkPrincessVow:
-; if (a_tickcount > vowInitialCooldown) {
-;     send {o down}
-;     sleep 50
-;     send {o up}
-;     vowInitialCooldown := a_tickcount + 120000 ;set cooldown
-; }
-; return
-
-; checkNineTail:
-; if (a_tickcount > ninetailInitialCooldown) {
-;     send {l down}
-;     sleep 50
-;     send {l up}
-;     ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
-; }
-; return
+;      send {u down}
+;      sleep 50
+;      send {u up}
+;      yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
+;      sleep 500
+;  }
+;  if (a_tickcount > yakshaInitialCooldown) {
+;      send {t down}
+;      sleep 50
+;      send {t up}
+;      yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
+;      sleep 500
+;  }
+;  if (a_tickcount > bbInitialCooldown) {
+;      send {y down}
+;      sleep 50
+;      send {y up}
+;      bbInitialCooldown := a_tickcount + 180000 ;set cooldown
+;      sleep 500
+;  }
+;  if (a_tickcount > ninetailInitialCooldown) {
+;      send {l down}
+;      sleep 50
+;      send {l up}
+;      ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
+;      sleep 500
+;  }
 
 
 Disable:

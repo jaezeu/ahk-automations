@@ -17,20 +17,25 @@ SetControlDelay, -1
 
 CoordMode ,Pixel, Window
 Gui +AlwaysOnTop
-Gui Show,w250 h70
-Gui Add, Button, x10 y10 w110 h50 gEnable, Enable
-Gui Add, Button, x130 y10 w110 h50 gDisable, Disable
-; kishinInitialCooldown := 0
-; yukiInitialCooldown := 0
-; yakshaInitialCooldown := 0
-; bbInitialCooldown := 0
-; vowInitialCooldown := 0
-; ninetailInitialCooldown := 0
-; Return
+Gui Show,w200 h130
+Gui Font, s8 Bold  cBlack
+Gui, Color, 0xb53c3c
+Gui Add, Text, x25 y18 , F1=
+Gui, Add, Button, x50 y10 w120 h30 gReload, Reload
+Gui Add, Text, x25 y58 , F2=
+Gui, Add, Button, x50 y50 w120 h30 gStart, Start
+Gui Add, Text, x25 y98 , F3=
+Gui, Add, Button, x50 y90 w120 h30 gStop, Stop
+
+kishinInitialCooldown := 0
+yukiInitialCooldown := 0
+yakshaInitialCooldown := 0
+bbInitialCooldown := 0
+vowInitialCooldown := 0
+ninetailInitialCooldown := 0
 
 global AHI := new AutoHotInterception()
 global keyboardId := AHI.GetKeyboardId(0x445A, 0x1424)
-return
 
 pressedKey(pressed,timedelay){
     AHI.SendKeyEvent(keyboardId, pressed, 1)
@@ -38,19 +43,23 @@ pressedKey(pressed,timedelay){
     AHI.SendKeyEvent(keyboardId, pressed, 0)
 }
 
-F1::Reload    ; to reload script
+F1::
+Reload:
+Reload
+
+GuiClose:
+ExitApp
 
 F2::
-Enable:
-Trigger:=0
-
-SetTimer, checkIntruder , 5000
-; SetTimer,checkBuffs,5000
-Loop {
+Start:
+; SetTimer, checkIntruder , 5000
+SetTimer,checkBuffs,4000
+run:=1
+While run {
     ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
     if (ErrorLevel = 0){
         TrayTip, Your location %MeX%x%MeY%, 2
-        if (MeX > 50 && MeX <= 250){
+        if (MeX > 50 && MeX <= 120){
             AHI.SendKeyEvent(keyboardId, 331, 0)
             AHI.SendKeyEvent(keyboardId, 32, 0)
             pressedKey(57,100)
@@ -64,7 +73,7 @@ Loop {
             pressedKey(45,100)
             pressedKey(45,100)
         }
-        if (MeX > 200){
+        if (MeX >= 120){
             AHI.SendKeyEvent(keyboardId, 333, 0)
             AHI.SendKeyEvent(keyboardId, 32, 0)
             AHI.SendKeyEvent(keyboardId, 331, 1)
@@ -72,7 +81,12 @@ Loop {
         }
     }
     sleep 1000
-} Until Trigger ;check if triggger is true
+}
+
+F3::
+Stop:
+run:=0
+Return
 
 checkIntruder:
 stranger := {"Stranger":"people.png", "Buddy":"buddy.png", "Guildmate":"guild.png"}
@@ -87,47 +101,39 @@ Return
 
 ; Below this is for checking summons/buffs
 
-; checkBuffs:
-; if (a_tickcount > kishinInitialCooldown) {
-;     send {f down}
-;     sleep 50
-;     send {f up}
-;     kishinInitialCooldown := a_tickcount + 60000 ;set cooldown
-;     sleep 500
-; }
-; if (a_tickcount > yukiInitialCooldown) {
-;      send {u down}
-;      sleep 50
-;      send {u up}
-;      yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
-;      sleep 500
-;  }
-;  if (a_tickcount > yakshaInitialCooldown) {
-;      send {t down}
-;      sleep 50
-;      send {t up}
-;      yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
-;      sleep 500
-;  }
-;  if (a_tickcount > bbInitialCooldown) {
-;      send {y down}
-;      sleep 50
-;      send {y up}
-;      bbInitialCooldown := a_tickcount + 180000 ;set cooldown
-;      sleep 500
-;  }
-;  if (a_tickcount > ninetailInitialCooldown) {
-;      send {l down}
-;      sleep 50
-;      send {l up}
-;      ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
-;      sleep 500
-;  }
-
-
-Disable:
-Trigger:=1
-Return
-
-GuiClose:
-	ExitApp
+checkBuffs:
+if (a_tickcount > kishinInitialCooldown) {
+    send {f down}
+    sleep 50
+    send {f up}
+    kishinInitialCooldown := a_tickcount + 60000 ;set cooldown
+    sleep 500
+}
+if (a_tickcount > yukiInitialCooldown) {
+     send {u down}
+     sleep 50
+     send {u up}
+     yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
+     sleep 500
+ }
+ if (a_tickcount > yakshaInitialCooldown) {
+     send {t down}
+     sleep 50
+     send {t up}
+     yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
+     sleep 500
+ }
+ if (a_tickcount > bbInitialCooldown) {
+     send {y down}
+     sleep 50
+     send {y up}
+     bbInitialCooldown := a_tickcount + 180000 ;set cooldown
+     sleep 500
+ }
+ if (a_tickcount > ninetailInitialCooldown) {
+     send {l down}
+     sleep 50
+     send {l up}
+     ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
+     sleep 500
+ }

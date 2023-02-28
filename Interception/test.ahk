@@ -55,30 +55,66 @@ Start:
 ; SetTimer, checkIntruder , 5000
 SetTimer,checkBuffs,4000
 run:=1
-While run {
+While run { ;right 333,left 331, up 328, down 336
     ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
     if (ErrorLevel = 0){
         TrayTip, Your location %MeX%x%MeY%, 2
-        if (MeX > 50 && MeX <= 120){
-            AHI.SendKeyEvent(keyboardId, 331, 0)
-            AHI.SendKeyEvent(keyboardId, 32, 0)
-            pressedKey(57,100)
+        if (MeX >= 45 && MeX <= 65) && (MeY >= 142 && MeY <= 153){
+            pressedKey(333,10)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
             AHI.SendKeyEvent(keyboardId, 333, 1)
             AHI.SendKeyEvent(keyboardId, 32, 1)
-            pressedKey(45,100)
-            pressedKey(45,100)
-            pressedKey(45,100)
-            pressedKey(57,100)
-            pressedKey(45,100)
-            pressedKey(45,100)
-            pressedKey(45,100)
         }
-        if (MeX >= 120){
+        if (MeX >= 64 && MeX < 85) && (MeY >= 142 && MeY <= 155){
             AHI.SendKeyEvent(keyboardId, 333, 0)
             AHI.SendKeyEvent(keyboardId, 32, 0)
-            AHI.SendKeyEvent(keyboardId, 331, 1)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(331,100)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            AHI.SendKeyEvent(keyboardId, 333, 1)
+            AHI.SendKeyEvent(keyboardId, 32, 1)
+            
+        }
+        if (MeX >= 84 && MeX < 117) && (MeY >= 142 && MeY <= 155){
+            AHI.SendKeyEvent(keyboardId, 333, 0) 
+            AHI.SendKeyEvent(keyboardId, 32, 0)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(331,100)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            AHI.SendKeyEvent(keyboardId, 333, 1)
             AHI.SendKeyEvent(keyboardId, 32, 1)
         }
+        if (MeX >= 116 && < 135) && (MeY >= 142 && MeY <= 153){
+            AHI.SendKeyEvent(keyboardId, 333, 0)
+            AHI.SendKeyEvent(keyboardId, 32, 0)t
+            AHI.SendKeyEvent(keyboardId, 331, 0)
+            AHI.SendKeyEvent(keyboardId, 32, 0)
+            AHI.SendKeyEvent(keyboardId, 328, 1)
+            AHI.SendKeyEvent(keyboardId, 32, 1)
+        } 
+        if (MeX >= 135) && (MeY >= 142 && MeY <= 153){
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            pressedKey(45,150)
+            AHI.SendKeyEvent(keyboardId, 331, 1)
+            AHI.SendKeyEvent(keyboardId, 32, 1)
+        } 
     }
     sleep 1000
 }
@@ -103,37 +139,27 @@ Return
 
 checkBuffs:
 if (a_tickcount > kishinInitialCooldown) {
-    send {f down}
-    sleep 50
-    send {f up}
+    pressedKey(33,50)
     kishinInitialCooldown := a_tickcount + 60000 ;set cooldown
     sleep 500
 }
 if (a_tickcount > yukiInitialCooldown) {
-     send {u down}
-     sleep 50
-     send {u up}
+     pressedKey(22,50)
      yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
      sleep 500
  }
  if (a_tickcount > yakshaInitialCooldown) {
-     send {t down}
-     sleep 50
-     send {t up}
+     pressedKey(20,50)
      yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
      sleep 500
  }
  if (a_tickcount > bbInitialCooldown) {
-     send {y down}
-     sleep 50
-     send {y up}
+     pressedKey(21,50)
      bbInitialCooldown := a_tickcount + 180000 ;set cooldown
      sleep 500
  }
  if (a_tickcount > ninetailInitialCooldown) {
-     send {l down}
-     sleep 50
-     send {l up}
+     pressedKey(38,50)
      ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
      sleep 500
  }

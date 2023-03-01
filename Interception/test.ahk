@@ -27,12 +27,12 @@ Gui, Add, Button, x50 y50 w120 h30 gStart, Start
 Gui Add, Text, x25 y98 , F3=
 Gui, Add, Button, x50 y90 w120 h30 gStop, Stop
 
-kishinInitialCooldown := 0
-yukiInitialCooldown := 0
-yakshaInitialCooldown := 0
-bbInitialCooldown := 0
-vowInitialCooldown := 0
-ninetailInitialCooldown := 0
+kishin := 0
+yuki := 0
+yaksha := 0
+bb := 0
+vow := 0
+ninetail := 0
 
 global AHI := new AutoHotInterception()
 global keyboardId := AHI.GetKeyboardId(0x445A, 0x1424)
@@ -53,12 +53,36 @@ ExitApp
 F2::
 Start:
 ; SetTimer, checkIntruder , 5000
-SetTimer,checkBuffs,4000
 run:=1
 While run { ;right 333,left 331, up 328, down 336
     ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
     if (ErrorLevel = 0){
-        TrayTip, Your location %MeX%x%MeY%, 2
+        ; TrayTip, Your location %MeX%x%MeY%, 2
+        if (a_tickcount > kishin) {
+            pressedKey(33,50)
+            kishin := a_tickcount + 60000 ;set cooldown
+            sleep 500
+        }
+         if (a_tickcount > yuki) {
+            pressedKey(22,50)
+            yuki := a_tickcount + 75000 ;set cooldown
+            sleep 500
+        }
+        if (a_tickcount > yaksha) {
+            pressedKey(20,50)
+            yaksha := a_tickcount + 35000 ;set cooldown
+            sleep 500
+        }
+        if (a_tickcount > bb) {
+            pressedKey(21,50)
+            bb := a_tickcount + 180000 ;set cooldown
+            sleep 500
+        }
+        if (a_tickcount > ninetail) {
+            pressedKey(38,50)
+            ninetail := a_tickcount + 180000 ;set cooldown
+            sleep 500
+        }
         if (MeX >= 45 && MeX <= 65) && (MeY >= 142 && MeY <= 153){
             pressedKey(333,10)
             pressedKey(45,150)
@@ -133,33 +157,3 @@ for key, value in stranger {
         ; SoundPlay, Resources\alarm2.mp3
 }
 Return
-
-
-; Below this is for checking summons/buffs
-
-checkBuffs:
-if (a_tickcount > kishinInitialCooldown) {
-    pressedKey(33,50)
-    kishinInitialCooldown := a_tickcount + 60000 ;set cooldown
-    sleep 500
-}
-if (a_tickcount > yukiInitialCooldown) {
-     pressedKey(22,50)
-     yukiInitialCooldown := a_tickcount + 75000 ;set cooldown
-     sleep 500
- }
- if (a_tickcount > yakshaInitialCooldown) {
-     pressedKey(20,50)
-     yakshaInitialCooldown := a_tickcount + 35000 ;set cooldown
-     sleep 500
- }
- if (a_tickcount > bbInitialCooldown) {
-     pressedKey(21,50)
-     bbInitialCooldown := a_tickcount + 180000 ;set cooldown
-     sleep 500
- }
- if (a_tickcount > ninetailInitialCooldown) {
-     pressedKey(38,50)
-     ninetailInitialCooldown := a_tickcount + 180000 ;set cooldown
-     sleep 500
- }

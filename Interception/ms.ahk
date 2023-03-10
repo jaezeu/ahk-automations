@@ -55,7 +55,7 @@ Start:
 ; SetTimer, checkIntruder , 5000
 run:=1
 While run { ;right 333,left 331, up 328, down 336
-    ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\me.png
+    ImageSearch, MeX, MeY, 6, 32, 385, 176, Resources\ms\me.png
     if (ErrorLevel = 0){
         ; TrayTip, Your location %MeX%x%MeY%, 2
         if (a_tickcount > kishin) {
@@ -151,9 +151,9 @@ Return
 checkIntruder:
 stranger := {"Stranger":"people.png", "Buddy":"buddy.png", "Guildmate":"guild.png"}
 for key, value in stranger {
-        ImageSearch, StrangerX, StrangerY, 6, 32, 385, 176, Resources\%value%
+        ImageSearch, StrangerX, StrangerY, 6, 32, 385, 176, Resources\ms\%value%
     if (ErrorLevel = 0)
         TrayTip, %key% has entered your map at location, 2
-        ; SoundPlay, Resources\alarm2.mp3
+        ; SoundPlay, Resources\ms\alarm2.mp3
 }
 Return
